@@ -1,0 +1,38 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+.next/
+.turbo/
+dist/
+coverage/
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Docker
+docker-data/
+mongo-data/
+
+# Backups
+backups/
+*.gz
+
+# Scripts (keep tracked but ignore logs)
+scripts/*.log
+
