@@ -49,16 +49,17 @@ UserSchema.methods.clearRefreshTokens = function clearRefreshTokens() {
   return this.save();
 };
 
-UserSchema.pre("save", function preSave(next) {
+UserSchema.pre("save", async function preSave(next) {
   if (!this.isModified("passwordHash")) return next();
-  bcrypt
-    .genSalt(10)
-    .then((salt) => bcrypt.hash(this.passwordHash, salt))
-    .then((hash) => {
-      this.passwordHash = hash;
-      next();
-    })
-    .catch(next);
+
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(this.passwordHash, salt);
+    this.passwordHash = hash;
+    next();
+  } catch (err) {
+    next(err);
+  }
 });
 
 UserSchema.index({ email: 1 });

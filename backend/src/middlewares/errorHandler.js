@@ -1,6 +1,6 @@
 import { logger } from "../utils/logger.js";
 
-export const errorHandler = (err, _req, res, _next) => {
+export const errorHandler = (err, _req, res) => {
   const status = err.status ?? 500;
   const isProduction = process.env.NODE_ENV === "production";
 

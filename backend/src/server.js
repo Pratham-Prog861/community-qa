@@ -25,7 +25,8 @@ async function bootstrap() {
     });
 
     await mongoose.connection.close();
-    process.exit(0);
+    logger.info("Database connection closed");
+    throw new Error("Server shutdown");
   };
 
   process.on("SIGTERM", shutdown);
@@ -34,6 +35,6 @@ async function bootstrap() {
 
 bootstrap().catch((error) => {
   logger.error(error, "Failed to start server");
-  process.exit(1);
+  throw error;
 });
 
