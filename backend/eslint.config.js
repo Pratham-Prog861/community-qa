@@ -14,6 +14,17 @@ export default [
   eslintPluginNode.configs["flat/recommended"],
   prettierConfig,
   {
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "module",
+      globals: {
+        process: "readonly",
+        console: "readonly",
+        Buffer: "readonly",
+        __dirname: "readonly",
+        __filename: "readonly"
+      }
+    },
     rules: {
       "no-console": ["warn", { allow: ["error"] }],
       "import/extensions": [
